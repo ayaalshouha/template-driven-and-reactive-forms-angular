@@ -3,14 +3,11 @@ import {
   afterNextRender,
   Component,
   DestroyRef,
-  ElementRef,
   inject,
-  signal,
-  ViewChild,
   viewChild,
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import {debounceTime } from 'rxjs';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-login',
