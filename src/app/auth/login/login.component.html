@@ -7,7 +7,15 @@
     <div class="control no-margin">
       <label for="email">Email</label>
       <!-- (ngModel) register this element by angular to be aware of and have access to  -->
-      <input id="email" type="email" name="email" email required ngModel />
+      <input
+        id="email"
+        type="email"
+        name="email"
+        #email="ngModel"
+        email
+        required
+        ngModel
+      />
     </div>
 
     <div class="control no-margin">
@@ -17,6 +25,8 @@
         type="password"
         name="password"
         minlength="6"
+        #password="ngModel"
+        password
         required
         ngModel
       />
@@ -25,8 +35,15 @@
     <button class="button">Login</button>
   </div>
 
-  @if(form.form.controls['email'].touched &&
+  <!-- angular can't  setup controls the first time template being rendered -->
+  <!-- thats why template variable should be added to the input feild -->
+  <!--  store control  cerated by angular in the template variable #email ="ngModel" -->
+  <!-- @if(form.form.controls['email'].touched &&
   form.form.controls['password'].touched && form.form.invalid) {
   <p class="control-error">invalid values detected, check your inputs</p>
+  } -->
+
+  @if(email.touched && password.touched && form.form.invalid){
+    <p class="control-error">invalid values detected, check your inputs</p>
   }
 </form>
