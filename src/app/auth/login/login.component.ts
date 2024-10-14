@@ -10,7 +10,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { subscribeOn } from 'rxjs';
+import { debounce, debounceTime, subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -29,11 +29,22 @@ export class LoginComponent {
     //register a func should be executed once after this component being rendered for the first time
     afterNextRender(() => {
       //(valueChanges) observable omit value whenever value entered to the form changes
-      const subscription = this.form().valueChanges?.subscribe({
-        next: (val) => {
-          console.log(val);
-        },
-      });
+      const subscription = this.form()
+        .valueChanges?.pipe(
+          // discard the latest value emittied if a new value emitted during the time selected 500ms
+          debounceTime(500)
+        )
+        .subscribe({
+          next: (value) => {
+            window.localStorage.setItem(
+              'saved-login-form',
+              // local storage only accept string values so JSON.stringify() is used
+              JSON.stringify({
+                email: value.email,
+              })
+            );
+          },
+        });
 
       this.destroyRef.onDestroy(() => subscription?.unsubscribe());
     });
