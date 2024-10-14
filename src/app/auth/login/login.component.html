@@ -16,7 +16,7 @@
         id="password"
         type="password"
         name="password"
-        minlength="6" 
+        minlength="6"
         required
         ngModel
       />
@@ -24,4 +24,8 @@
 
     <button class="button">Login</button>
   </div>
+
+  @if(form.form.touched && form.form.invalid){
+  <p class="control-error">invalid values detected, check your inputs</p>
+  }
 </form>
