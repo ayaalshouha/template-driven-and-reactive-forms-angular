@@ -12,7 +12,9 @@ export class LoginComponent {
   // access the form by viewChild method decorator and viewChild signal method
   // @ViewChild(HTMLFormElement) form?: ElementRef<HTMLFormElement>;
   // private form = viewChild<ElementRef<HTMLFormElement>>('form');
-  onSubmit(form: NgForm) {
-    
+  onSubmit(formDate: NgForm) {
+    // console.log(form);
+    console.log(formDate.form.value.email);
+    console.log(formDate.form.value.password);
   }
 }
