@@ -23,6 +23,20 @@ export class LoginComponent {
   private destroyRef = inject(DestroyRef);
 
   constructor() {
+    const savedForm = window.localStorage.getItem('saved-login-form');
+    if (savedForm) {
+      const loadedFormData = JSON.parse(savedForm);
+      const savedEmail = loadedFormData.email;
+      const savedPassword = loadedFormData.password;
+
+      //setTimeout() so the form is fully initialized and DOM can recognize the controls
+      setTimeout(() => {
+        // this.form().setValue({ email: savedEmail, password: savedPassword });
+        this.form().controls['email'].setValue(savedEmail);
+        this.form().controls['password'].setValue(savedPassword);
+      }, 1);
+    }
+
     //register a func should be executed once after this component being rendered for the first time
     afterNextRender(() => {
       //(valueChanges) observable omit value whenever value entered to the form changes
