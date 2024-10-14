@@ -1,4 +1,4 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule],
 })
 export class LoginComponent {
-  // access the form by viewChild method
-  @ViewChild(HTMLFormElement) form?: ElementRef<HTMLFormElement>;
+  // access the form by viewChild method decorator and viewChild signal method
+  // @ViewChild(HTMLFormElement) form?: ElementRef<HTMLFormElement>;
+  private form = viewChild<ElementRef<HTMLFormElement>>('form');
 }
