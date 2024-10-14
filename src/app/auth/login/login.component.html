@@ -1,12 +1,12 @@
 <!-- template driven form coz all registration inside the template  -->
 <!-- (ngForm) identifier will bind form twmplate variable to an object with type ngForm which managed by angular -->
+<!-- (ngModel) register the input element by angular to be aware of and have access to  -->
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <h2>Login</h2>
 
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <!-- (ngModel) register this element by angular to be aware of and have access to  -->
       <input
         id="email"
         type="email"
