@@ -29,7 +29,7 @@ export class LoginComponent {
       const savedEmail = loadedFormData.email;
       const savedPassword = loadedFormData.password;
 
-      //setTimeout() so the form is fully initialized and DOM can recognize the controls
+      //setTimeout() so the form is fully initialized and DOM can recognize the controls and setValues function well
       setTimeout(() => {
         // this.form().setValue({ email: savedEmail, password: savedPassword });
         this.form().controls['email'].setValue(savedEmail);
@@ -52,6 +52,7 @@ export class LoginComponent {
               // local storage only accept string values so JSON.stringify() is used
               JSON.stringify({
                 email: value.email,
+                password: value.password,
               })
             );
           },
