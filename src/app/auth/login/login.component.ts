@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,5 +11,8 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
   // access the form by viewChild method decorator and viewChild signal method
   // @ViewChild(HTMLFormElement) form?: ElementRef<HTMLFormElement>;
-  private form = viewChild<ElementRef<HTMLFormElement>>('form');
+  // private form = viewChild<ElementRef<HTMLFormElement>>('form');
+  onSubmit(form: NgForm) {
+    
+  }
 }

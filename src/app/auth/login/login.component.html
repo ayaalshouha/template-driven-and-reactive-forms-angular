@@ -1,6 +1,6 @@
 <!-- template driven form coz all registration inside the template  -->
 <!-- (ngForm) identifier will bind form twmplate variable to an object with type ngForm which managed by angular -->
-<form #form="ngForm">
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <h2>Login</h2>
 
   <div class="control-row">
