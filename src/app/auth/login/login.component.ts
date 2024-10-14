@@ -10,7 +10,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { debounce, debounceTime, subscribeOn } from 'rxjs';
+import {debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,7 @@ export class LoginComponent {
       //(valueChanges) observable omit value whenever value entered to the form changes
       const subscription = this.form()
         .valueChanges?.pipe(
-          // discard the latest value emittied if a new value emitted during the time selected 500ms
+          // discard the latest value emittied if there is a value emitted within the time selected 500ms
           debounceTime(500)
         )
         .subscribe({
