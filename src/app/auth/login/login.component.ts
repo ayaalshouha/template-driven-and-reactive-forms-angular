@@ -22,5 +22,8 @@ export class LoginComponent {
     const enteredPassword = formDate.form.value.password;
     console.log(formDate);
     console.log(enteredEmail, enteredPassword);
+
+    // reset all enternally managed info about form like the ngModel classes added
+    formDate.form.reset();
   }
 }

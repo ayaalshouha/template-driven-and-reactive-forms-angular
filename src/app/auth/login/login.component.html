@@ -43,7 +43,11 @@
   <!-- angular can't  setup controls the first time template being rendered -->
   <!-- thats why template variable should be added to the input feild -->
   <!--  store control  cerated by angular in the template variable #email ="ngModel" -->
-  @if(email.touched && password.touched && form.form.invalid){
-  <p class="control-error">invalid values detected, check your inputs</p>
+  @if(email.touched && email.dirty && email.invalid){
+  <p class="control-error">invalid email value detected, check your email</p>
+  } @if(password.touched && password.dirty && password.invalid){
+  <p class="control-error">
+    invalid password value detected, check your password
+  </p>
   }
 </form>
