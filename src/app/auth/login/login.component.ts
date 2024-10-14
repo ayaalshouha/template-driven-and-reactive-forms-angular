@@ -9,12 +9,18 @@ import { FormsModule, NgForm } from '@angular/forms';
   imports: [FormsModule],
 })
 export class LoginComponent {
-  // access the form by viewChild method decorator and viewChild signal method
+  // access the form by viewChild method decorator or viewChild signal method or ngSubmit(form)
   // @ViewChild(HTMLFormElement) form?: ElementRef<HTMLFormElement>;
   // private form = viewChild<ElementRef<HTMLFormElement>>('form');
+
   onSubmit(formDate: NgForm) {
-    // console.log(form);
-    console.log(formDate.form.value.email);
-    console.log(formDate.form.value.password);
+    // validation
+    if (formDate.form.invalid) {
+      return;
+    }
+    const enteredEmail = formDate.form.value.email;
+    const enteredPassword = formDate.form.value.password;
+    console.log(formDate);
+    console.log(enteredEmail, enteredPassword);
   }
 }

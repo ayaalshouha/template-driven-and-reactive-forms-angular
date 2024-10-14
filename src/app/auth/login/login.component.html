@@ -7,12 +7,19 @@
     <div class="control no-margin">
       <label for="email">Email</label>
       <!-- (ngModel) register this element by angular to be aware of and have access to  -->
-      <input id="email" type="email" name="email" ngModel />
+      <input id="email" type="email" name="email" email required ngModel />
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" name="password" ngModel />
+      <input
+        id="password"
+        type="password"
+        name="password"
+        minlength="6" 
+        required
+        ngModel
+      />
     </div>
 
     <button class="button">Login</button>
