@@ -35,9 +35,7 @@ export class LoginComponent {
         },
       });
 
-      this.destroyRef.onDestroy(() => {
-        subscription?.unsubscribe();
-      });
+      this.destroyRef.onDestroy(() => subscription?.unsubscribe());
     });
   }
 
