@@ -14,6 +14,12 @@ function isEmailUnique(control: AbstractControl) {
   }
   return of({ notUnique: true });
 }
+
+function mustContainAtChar(control: AbstractControl) {
+  if (control.value.includes('@')) return of(null);
+
+  return of({ containAtChar: false });
+}
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -29,6 +35,7 @@ export class SignupComponent {
     }),
     password: new FormControl('', {
       validators: [Validators.required, Validators.minLength(6)],
+      asyncValidators: [mustContainAtChar],
     }),
   });
 
