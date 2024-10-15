@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  RequiredValidator,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login-reactive',
@@ -10,8 +16,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginReactiveComponent {
   form = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    // accept a second argument which is array of validators or configuration object which contain validatiors:[]
+    email: new FormControl('', {
+      validators: [Validators.email, Validators.required],
+    }),
+    password: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
   });
 
   onSumbit() {
