@@ -24,11 +24,19 @@ export class LoginReactiveComponent {
     }),
   });
 
-  get isEmailVlaid() {
+  get invalidEmail() {
     return (
-      this.form.controls.email.valid &&
-      !this.form.controls.email.touched &&
-      !this.form.controls.email.dirty
+      this.form.controls.email.invalid &&
+      this.form.controls.email.touched &&
+      this.form.controls.email.dirty
+    );
+  }
+
+  get invalidPassword() {
+    return (
+      this.form.controls.password.invalid &&
+      this.form.controls.password.touched &&
+      this.form.controls.password.dirty
     );
   }
   onSumbit() {
