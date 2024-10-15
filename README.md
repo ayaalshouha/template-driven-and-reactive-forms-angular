@@ -2,6 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0.
 
+## Main Topics: 
+#### Template-Driven Form: 
+  - Registering Form Controls
+  - Getting Access to the Angular-managed Form
+  - Extracting User Input Values
+  - Validating Input with Form Validation Directives
+  - Using the Form Validation Status To Provide User Feedback
+  - Interacting With The Underlying Form Object In The Component
+  - Updating Form Values Programmatically
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
