@@ -3,12 +3,12 @@
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input type="email" id="email" />
+      <input type="email" id="email" [formControl]="form.controls.email" />
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input type="password" id="password" />
+      <input type="password" id="password" formControlName="password" />
     </div>
 
     <button class="button">Login</button>

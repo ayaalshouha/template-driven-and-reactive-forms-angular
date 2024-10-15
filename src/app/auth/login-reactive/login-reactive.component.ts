@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login-reactive',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './login-reactive.component.html',
   styleUrl: './login-reactive.component.css',
 })
@@ -14,7 +14,7 @@ export class LoginReactiveComponent {
     password: new FormControl(''),
   });
 
-  onSumbit(){
+  onSumbit() {
     //accessing form control values
     //this.form.value.email;
   }
