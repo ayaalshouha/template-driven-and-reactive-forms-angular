@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -6,4 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
 })
-export class SignupComponent {}
+export class SignupComponent {
+  form = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
+}
