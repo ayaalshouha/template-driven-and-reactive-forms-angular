@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ThisReceiver } from '@angular/compiler';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -6,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { of } from 'rxjs';
+import { debounceTime, of } from 'rxjs';
 
 function mustContainQuestionMark(control: AbstractControl) {
   if (control.value.includes('?')) {
@@ -31,7 +32,8 @@ function emailIsUnique(control: AbstractControl) {
   templateUrl: './login-reactive.component.html',
   styleUrl: './login-reactive.component.css',
 })
-export class LoginReactiveComponent {
+export class LoginReactiveComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   form = new FormGroup({
     // accept a second argument which is array of validators or configuration object which contain validatiors:[]
     email: new FormControl('', {
@@ -63,6 +65,38 @@ export class LoginReactiveComponent {
       this.form.controls.password.dirty
     );
   }
+
+  constructor() {}
+
+  ngOnInit() {
+    const savedItem = window.localStorage.getItem('saved-login');
+    if (savedItem) {
+      const loadedData = JSON.parse(savedItem);
+      const savedEmail = loadedData.email;
+      const savedPass = loadedData.password;
+      //path values which is reactive form feature
+      this.form.patchValue({
+        email: savedEmail,
+        password: savedPass,
+      });
+    }
+
+    const subscription = this.form.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: (value) => {
+          window.localStorage.setItem(
+            'saved-login',
+            JSON.stringify({
+              email: value.email,
+              password: value.password,
+            })
+          );
+        },
+      });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
   onSumbit() {
     console.log(this.form);
     // directly access the controls - no need to use template variables
