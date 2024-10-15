@@ -13,4 +13,9 @@ export class LoginReactiveComponent {
     email: new FormControl(''),
     password: new FormControl(''),
   });
+
+  onSumbit(){
+    //accessing form control values
+    //this.form.value.email;
+  }
 }
