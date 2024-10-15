@@ -3,7 +3,6 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  RequiredValidator,
   Validators,
 } from '@angular/forms';
 
