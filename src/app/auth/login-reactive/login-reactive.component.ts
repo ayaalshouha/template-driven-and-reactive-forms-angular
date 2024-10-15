@@ -77,7 +77,6 @@ export class LoginReactiveComponent implements OnInit {
       //path values which is reactive form feature
       this.form.patchValue({
         email: savedEmail,
-        password: savedPass,
       });
     }
 
