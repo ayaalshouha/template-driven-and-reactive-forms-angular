@@ -15,6 +15,7 @@ export class LoginReactiveComponent {
   });
 
   onSumbit() {
+    console.log(this.form);
     //accessing form control values
     //this.form.value.email;
   }

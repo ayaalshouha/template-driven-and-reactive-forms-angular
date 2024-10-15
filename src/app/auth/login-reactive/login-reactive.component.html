@@ -1,4 +1,5 @@
-<form [formGroup]="form">
+<!-- you dont need to pass any arguments from template because we already have access to the form from ts file -->
+<form [formGroup]="form" (ngSubmit)="onSumbit()">
   <h2>Login</h2>
   <div class="control-row">
     <div class="control no-margin">
