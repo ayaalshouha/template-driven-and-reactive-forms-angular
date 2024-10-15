@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { of } from 'rxjs';
 
 function mustContainQuestionMark(control: AbstractControl) {
   if (control.value.includes('?')) {
@@ -13,6 +14,14 @@ function mustContainQuestionMark(control: AbstractControl) {
   }
 
   return { doesNotContainQuestionMark: true };
+}
+// dummy validator function
+function emailIsUnique(control: AbstractControl) {
+  if (control.value !== 'text@example.com') {
+    return of(null);
+    //of() produce observable that emit a value which is null here
+  }
+  return of({ notUniqueEmail: true });
 }
 
 @Component({
@@ -27,6 +36,8 @@ export class LoginReactiveComponent {
     // accept a second argument which is array of validators or configuration object which contain validatiors:[]
     email: new FormControl('', {
       validators: [Validators.email, Validators.required],
+      // asyncValidators are functions taht get control as arg and must return observable to do things like check value with backend data so its null if valid or error object if not
+      asyncValidators: [emailIsUnique],
     }),
     password: new FormControl('', {
       validators: [
