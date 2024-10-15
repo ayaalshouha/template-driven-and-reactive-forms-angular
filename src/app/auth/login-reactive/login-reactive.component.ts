@@ -17,7 +17,7 @@ function mustContainQuestionMark(control: AbstractControl) {
 }
 // dummy validator function
 function emailIsUnique(control: AbstractControl) {
-  if (control.value !== 'text@example.com') {
+  if (control.value !== 'admin@example.com') {
     return of(null);
     //of() produce observable that emit a value which is null here
   }
