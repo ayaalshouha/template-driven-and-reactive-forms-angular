@@ -24,6 +24,13 @@ export class LoginReactiveComponent {
     }),
   });
 
+  get isEmailVlaid() {
+    return (
+      this.form.controls.email.valid &&
+      !this.form.controls.email.touched &&
+      !this.form.controls.email.dirty
+    );
+  }
   onSumbit() {
     console.log(this.form);
     // directly access the controls - no need to use template variables
