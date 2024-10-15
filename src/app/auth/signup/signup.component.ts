@@ -20,6 +20,14 @@ function mustContainAtChar(control: AbstractControl) {
 
   return of({ containAtChar: false });
 }
+
+let initialEmailValue = '';
+const savedItems = window.localStorage.getItem('saved-login');
+if (savedItems) {
+  const loadedItems = JSON.parse(savedItems);
+  initialEmailValue = loadedItems.email;
+}
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -29,7 +37,7 @@ function mustContainAtChar(control: AbstractControl) {
 })
 export class SignupComponent {
   form = new FormGroup({
-    email: new FormControl('', {
+    email: new FormControl(initialEmailValue, {
       validators: [Validators.email, Validators.required],
       asyncValidators: [isEmailUnique],
     }),
