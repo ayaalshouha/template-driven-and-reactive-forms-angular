@@ -9,24 +9,21 @@ import {
 } from '@angular/forms';
 import { of } from 'rxjs';
 
-function isEmailUnique(control: AbstractControl) {
-  if (control.value !== 'admin@example.com') {
-    return of(null);
-  }
-  return of({ notUnique: true });
-}
-
-function mustContainAtChar(control: AbstractControl) {
-  if (control.value.includes('@')) return of(null);
-
-  return of({ containAtChar: false });
-}
-
 let initialEmailValue = '';
 const savedItems = window.localStorage.getItem('saved-login');
 if (savedItems) {
   const loadedItems = JSON.parse(savedItems);
   initialEmailValue = loadedItems.email;
+}
+function confirmPasswords(control: AbstractControl) {
+  const pass = control.get('password')?.value;
+  const confirmPass = control.get('confirmPassword')?.value;
+  if (pass === confirmPass) {
+    return of(null);
+  }
+  return of({
+    confirmedPasswords: false,
+  });
 }
 
 @Component({
@@ -40,18 +37,18 @@ export class SignupComponent {
   form = new FormGroup({
     email: new FormControl(initialEmailValue, {
       validators: [Validators.email, Validators.required],
-      asyncValidators: [isEmailUnique],
     }),
-    passwords: new FormGroup({
-      password: new FormControl('', {
-        validators: [Validators.required, Validators.minLength(6)],
-        asyncValidators: [mustContainAtChar],
-      }),
-      confirmPassword: new FormControl('', {
-        validators: [Validators.required, Validators.minLength(6)],
-        asyncValidators: [mustContainAtChar],
-      }),
-    }),
+    passwords: new FormGroup(
+      {
+        password: new FormControl('', {
+          validators: [Validators.required, Validators.minLength(6)],
+        }),
+        confirmPassword: new FormControl('', {
+          validators: [Validators.required, Validators.minLength(6)],
+        }),
+      },
+      { validators: [confirmPasswords] }
+    ),
 
     firstName: new FormControl('', { validators: [Validators.required] }),
     lastName: new FormControl('', { validators: [Validators.required] }),
