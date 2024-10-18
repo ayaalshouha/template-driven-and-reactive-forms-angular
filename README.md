@@ -12,6 +12,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - Interacting With The Underlying Form Object In The Component
   - Updating Form Values Programmatically
 
+#### Reactive Form: 
+  - Syncing Reactive Form Definition & Template
+  - Handling Form Submission
+  - Adding Validators To Reactive Forms
+  - Building Custom Validators
+  - Creating & Using Async Validators
+  - Interacting with the Form Programmatically
+  - Connecting & Registering Inputs For A Complex Form
+  - Working with Nested Form Groups
+  - Working with Form Arrays
+  - Creating Multi-Input Validators / Form Group Validators
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
