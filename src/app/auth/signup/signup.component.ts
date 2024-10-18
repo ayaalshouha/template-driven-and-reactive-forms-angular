@@ -15,15 +15,19 @@ if (savedItems) {
   const loadedItems = JSON.parse(savedItems);
   initialEmailValue = loadedItems.email;
 }
-function confirmPasswords(control: AbstractControl) {
-  const pass = control.get('password')?.value;
-  const confirmPass = control.get('confirmPassword')?.value;
-  if (pass === confirmPass) {
-    return of(null);
-  }
-  return of({
-    confirmedPasswords: false,
-  });
+
+//factory function produce a validate function based on inputs
+function confirmPasswords(controlName1: string, controlName2: string) {
+  return (control: AbstractControl) => {
+    const val1 = control.get(controlName1)?.value;
+    const val2 = control.get(controlName2)?.value;
+    if (val1 === val2) {
+      return null;
+    }
+    return {
+      notEqual: true,
+    };
+  };
 }
 
 @Component({
@@ -47,7 +51,7 @@ export class SignupComponent {
           validators: [Validators.required, Validators.minLength(6)],
         }),
       },
-      { validators: [confirmPasswords] }
+      { validators: [confirmPasswords('password', 'confirmPassword')] }
     ),
 
     firstName: new FormControl('', { validators: [Validators.required] }),
