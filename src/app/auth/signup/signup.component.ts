@@ -57,7 +57,8 @@ export class SignupComponent {
     city: new FormControl('', { validators: [Validators.required] }),
     role: new FormControl<
       'student' | 'teacher' | 'employee' | 'founder' | 'other'
-    >('student', { validators: [Validators.required] }),
+    >('student', { validators: [Validators.required] }), //dropdown list
+    agree: new FormControl(false, { validators: [Validators.required] }), //checkbox
   });
 
   get InvalidEmail() {
