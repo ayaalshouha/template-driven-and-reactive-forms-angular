@@ -45,6 +45,10 @@ export class SignupComponent {
       validators: [Validators.required, Validators.minLength(6)],
       asyncValidators: [mustContainAtChar],
     }),
+    confirmPassword: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)],
+      asyncValidators: [mustContainAtChar],
+    }),
   });
 
   get InvalidEmail() {
